@@ -1,3 +1,9 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+
 html{
     display: flex;
 justify-content: center;
@@ -18,20 +24,69 @@ grid-template-columns: 33% auto  33% ;
     background-color: #6767c0;
     width: 600px;
     height: 600px;
+    border-radius: 50px;
+    position: absolute;
+    position: fixed;
+    overflow: hidden;
+
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+
+button:active {
+    scale: 0.9;
+}
 #title {
     color: aliceblue;
     margin: 0%;
     grid-area: title;
+    font-size: 48px;
+
+}
+#icon-play {
+}
+#icon-pause {
+    display: none;
+}
+
+#scrub-input{
+    display: flex;
+    position: relative;
+    grid-area: scrub;
+}
+
+#volume-input{
+    display: flex;
+    position: relative;
+    grid-area: volume-input;
 }
 
 #file-input {
     grid-area: file;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+#input-file {
+    position: absolute;
+    opacity: 0;
+    background-color: #000041;
+    inset: 0;
 }
 
 #beats {
     grid-area: beats;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #scrub-input {
@@ -60,4 +115,18 @@ grid-template-columns: 33% auto  33% ;
 
 #tumo {
     grid-area: tumo;
+}
+
+.range-bar {
+ position: absolute;
+ inset: 0;
+ background-color: azure;    
+ pointer-events: none;
+ transform: scaleX(0.5);
+ transform-origin: left;
+}
+
+input[type="range"] {
+flex: 1;
+opacity: 0;
 }
