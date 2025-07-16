@@ -8,33 +8,54 @@ html{
     display: flex;
 justify-content: center;
 align-items: center;
-background-color: #000041;
+background-color: #000013;
 height: 100dvh;
 } 
-body{
+body {
     display: grid;
     grid-template-areas: 
-    'title title file'
-    'beats beats beats'
-    'scrub scrub scrub'
-    'previous playpause next'
-    'volume-input volume-input tumo';
-grid-template-rows: 64px auto 32px auto 32px;
-grid-template-columns: 33% auto  33% ;
-    background-color: #6767c0;
-    width: 600px;
-    height: 600px;
-    border-radius: 50px;
-    position: absolute;
-    position: fixed;
+      'title title file'
+      'beats beats beats'
+      'scrub scrub scrub'
+      'previous playpause next'
+      'volume-input volume-input tumo';
+  
+    grid-template-rows: 62px auto 32px auto 32px;
+    grid-template-columns: 33% auto 33%;
+  
+    background-color: #000055;
+    aspect-ratio: 1;
+    height: 750px;
+    width: 400px;
+    padding: 32px;
+    border-radius: 15px;
+    position: relative; /* Evita conflito com animação */
     overflow: hidden;
-
-}
+  
+    box-shadow: 0px 0px 105px 84px rgba(0, 71, 158, 0.59);
+  
+    animation: floatBody 8s ease-in-out infinite;
+  }
+  
+  @keyframes floatBody {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  
+  
 
 button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    content: none;
+    container: 100;
+
 
 }
 
@@ -43,11 +64,24 @@ button:active {
 }
 #title {
     color: aliceblue;
-    margin: 0%;
-    grid-area: title;
+    margin: 0;
     font-size: 48px;
-
+    position: absolute;
+    top: 0.5;               /* Alinha no topo */
+    left: 50%;            /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
 }
+
+
+
 #icon-play {
 }
 #icon-pause {
@@ -71,6 +105,8 @@ button:active {
     position: relative;
     display: flex;
     justify-content: flex-end;
+    top: 1260%;
+    right: 130%;
     align-items: center;
 
 }
@@ -129,4 +165,25 @@ button:active {
 input[type="range"] {
 flex: 1;
 opacity: 0;
+}
+
+#nomedamusica {
+    color: rgb(60, 114, 238);
+    margin: 0;
+    font-size: 20px;
+    position: absolute;
+    top: 0.2;               /* Alinha no topo */
+    left: 50%;            /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#linhas {
+position: absolute;
+display: flex;
+justify-content: center;
+align-items: center;
 }
