@@ -1,121 +1,128 @@
 * {
-    font-family:Arial, Helvetica, sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
-
-html{
+html {
     display: flex;
-justify-content: center;
-align-items: center;
-background-color: #000013;
-height: 100dvh;
-} 
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #000024, #1e1e4f);
+    height: 100dvh;
+    overflow: hidden;
+}
+
 body {
     display: grid;
-    grid-template-areas: 
-      'title title file'
+    grid-template-areas:
+      'title title title'
       'beats beats beats'
       'scrub scrub scrub'
       'previous playpause next'
       'volume-input volume-input tumo';
   
-    grid-template-rows: 62px auto 32px auto 32px;
-    grid-template-columns: 33% auto 33%;
+    grid-template-rows: 60px auto 40px auto 40px;
+    grid-template-columns: 1fr 1fr 1fr;
   
-    background-color: #000055;
+    background: linear-gradient(135deg, #000034, #000e79);
     aspect-ratio: 1;
-    height: 750px;
-    width: 400px;
-    padding: 32px;
-    border-radius: 15px;
-    position: relative; /* Evita conflito com animação */
+    height: 800px;
+    width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
     overflow: hidden;
+    box-shadow: 0 0 20px 15px rgba(3, 0, 95, 0.7), 0 0 40px 5px rgba(0, 8, 65, 0.3);
   
-    box-shadow: 0px 0px 105px 84px rgba(0, 71, 158, 0.59);
-  
-    animation: floatBody 8s ease-in-out infinite;
-  }
-  
-  @keyframes floatBody {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
-  }
-  
-  
-  
+    animation: floatBody 6s ease-in-out infinite;
+}
+
+@keyframes floatBody {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
 
 button {
-    background-color: transparent;
+    background: linear-gradient(45deg, #000038, #00009e);
     border: none;
+    border-radius: 50%;
     cursor: pointer;
-    content: none;
-    container: 100;
-
-
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    transition: transform 0.2s, background 0.3s;
 }
 
 button:active {
-    scale: 0.9;
+    transform: scale(0.85);
+    background: linear-gradient(45deg, #0000bb, #3333ff);
 }
+
 #title {
-    color: aliceblue;
+    color: #e0e0ff;
     margin: 0;
-    font-size: 48px;
+    font-size: 50px;
     position: absolute;
-    top: 0.5;               /* Alinha no topo */
-    left: 50%;            /* Centraliza horizontalmente */
+    top: 10px;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    text-shadow:
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.3);
 }
-
-
 
 #icon-play {
 }
+
 #icon-pause {
     display: none;
 }
 
-#scrub-input{
+#scrub-input {
     display: flex;
     position: relative;
     grid-area: scrub;
+    justify-content: center;
 }
 
-#volume-input{
+#scrub-input input[type="range"] {
+    width: 100%;
+    accent-color: #0000aa;
+}
+
+#volume-input {
     display: flex;
     position: relative;
     grid-area: volume-input;
+    justify-content: center;
+}
+
+#volume-input input[type="range"] {
+    width: 100%;
+    accent-color: #6a6aff;
 }
 
 #file-input {
-    grid-area: file;
+    grid-area: title;
     position: relative;
     display: flex;
     justify-content: flex-end;
-    top: 1260%;
-    right: 130%;
     align-items: center;
-
+    top: 10px;
+    right: 10px;
 }
 
 #input-file {
     position: absolute;
     opacity: 0;
-    background-color: #000041;
+    background-color: #2a2a5f;
     inset: 0;
+    border-radius: 5px;
 }
 
 #beats {
@@ -123,14 +130,10 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#scrub-input {
-    grid-area: scrub;
-}
-
-#volume-input {
-    grid-area: file-input;
+    background: linear-gradient(90deg, #5a5a9f, #8a8aff);
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px rgba(0, 123, 255, 0.3);
 }
 
 #previous-button {
@@ -139,51 +142,58 @@ button:active {
 
 #play-pause {
     grid-area: playpause;
+    font-size: 24px;
 }
 
 #next-button {
     grid-area: next;
 }
 
-#volume-input {
-    grid-area: volume-input;
-}
-
 #tumo {
     grid-area: tumo;
+    color: #6a6aff;
+    font-size: 18px;
+    text-align: center;
 }
 
 .range-bar {
- position: absolute;
- inset: 0;
- background-color: azure;    
- pointer-events: none;
- transform: scaleX(0.5);
- transform-origin: left;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #6a6aff, #8a8aff);
+    pointer-events: none;
+    transform: scaleX(0.5);
+    transform-origin: left;
+    border-radius: 5px;
 }
 
 input[type="range"] {
-flex: 1;
-opacity: 0;
+    flex: 1;
+    opacity: 0;
+    height: 10px;
 }
 
 #nomedamusica {
-    color: rgb(60, 114, 238);
+    color: #4a90e2;
     margin: 0;
-    font-size: 20px;
+    font-size: 22px;
     position: absolute;
-    top: 0.2;               /* Alinha no topo */
-    left: 50%;            /* Centraliza horizontalmente */
+    top: 80px;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-
+    text-shadow: 0 0 5px rgba(74, 144, 226, 0.7);
 }
 
 #linhas {
-position: absolute;
-display: flex;
-justify-content: center;
-align-items: center;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 20px;
+    width: 100%;
+    color: #e0e0ff;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }

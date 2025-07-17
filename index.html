@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tumo beats</title>
 <script src="script.js"></script>
-
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" type="image/svg+xml" href="images/app_logo.svg" />
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="linhas">----------------------------</div>
     <h1 id="title">Tumo Beats</h1>
-    <h1 id="nomedamusica">Nome da musica</h1>
-    
+    <div></div>
     <div id="beats"><svg width="35%" height="100%" viewBox="0 0 150 150" fill="white">
         <g>
             <rect x="141.176" y="0" width="8.824" height="46.064"/>
@@ -73,7 +73,7 @@
     <div class="range-bar"></div>
     </div>
     <div id="file-input">
-        <input id="input-file" type="file"  >
+        <input id="input-file" type="file" accept="audio/*" >
         
         <svg width="50%" height="50%" viewBox="0 0 40 32" fill="white">
             <path d="m 0,13.911 6.89,18.088 27.152457,0 -7.151,-18.088 z"/>

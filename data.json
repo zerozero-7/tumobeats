@@ -1,10 +1,14 @@
 [
     {
         "title": "Musica 1",
-        "url": "audios/music02.mp3"
-    }   ,
-     {
-        "title": "Musica 1",
         "url": "audios/music01.mp3"
+    }   ,
+    {
+        "title": "Musica 2",
+        "url": "audios/music02.mp3"
+    },   
+      {
+        "title": "Musica 3",
+        "url": "audios/music03.mp3"
     }
 ]
