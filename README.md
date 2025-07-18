@@ -1,46 +1,42 @@
-# 🎧 Tumo Beats
+# Tumo Beats!
 
-![alt text](images/banner.svg)
+**Javascript audio player**
 
-**Tumo Beats** é uma aplicação web progressiva (PWA) minimalista e instalável, desenvolvida com JavaScript puro. Inclui controlos personalizados de áudio, suporte a ficheiros arrastados, e visualização em tempo real usando a Web Audio API.
+## 📦 Descrição
 
----
+Tumo Beats! é um reprodutor de áudio simples feito com Javascript, HTML e CSS. Ele inclui suporte a Progressive Web App (PWA), permitindo instalação em dispositivos móveis e desktops, com ícones personalizados e tela inicial.
 
-## 🚀 Funcionalidades
-P
-- 🔊 Leitor de áudio com controlos personalizados: play/pause, anterior, seguinte, volume e silenciar
-- 🎵 Visualizador de áudio em tempo real com barras de frequência via `<canvas>`
-- 📦 Suporte a PWA: instalável em telemóveis e desktops
-- 🎧 Suporte a arrastar e largar ficheiros MP3 ou FLAC diretamente na aplicação
-- 🕒 Barra de progresso com indicador de tempo decorrido
-- 🎛️ Controlo de volume dinâmico com alternância entre som e mudo
-- 🖼️ Interface responsiva com logótipo Tumo e nome da música atual
+## ⚙️ Instruções
 
----
+Sempre que alterarmos **qualquer um** dos seguintes ficheiros, é necessário atualizar a **versão do `service-worker.js`** para garantir que o cache seja corretamente invalidado:
 
-## 🖼️ Captura de Ecrã
+### Ficheiros monitorados:
+- `index.html`
+- `script.js`
+- `style.css`
+- `manifest.json`
+- `images/app_logo.svg`
+- `images/icons-192.webp`
+- `images/icons-512.webp`
+- `images/icons-vector.svg`
+- `images/maskable_icon.webp`
+- `images/screenshot1.webp`
+- `images/screenshot2.webp`
 
-![screenshot](images/screenshot2.png)
+### Como atualizar a versão
 
----
+Abra o ficheiro `service-worker.js` e localize a constante `VERSION`.
 
-## 🗂️ Estrutura do Projeto
+Por exemplo, se estiver assim:
 
-```plaintext
-
-├── index.html              # Página principal
-├── manifest.json           # Manifesto da PWA
-├── service-worker.js       # Service worker para suporte offline
-├── data.json               # Lista de músicas pré-definida
-├── music/                  # Musicas
-│   ├── music1.mp3
-│   └── ...
-├── images/                 # Ícones e capturas de ecrã
-│   ├── icons-192.webp
-│   ├── icons-512.webp
-│   ├── maskable_icon.webp
-│   ├── screenshot1.png
-│   └── ...
-├── styles.css              # Estilos CSS opcionais
-└── app.js                  # Lógica principal do leitor e visualizador
+```js
+const VERSION = "1.0.0";
 ```
+
+Atualizar para:
+
+```js
+const VERSION = "1.1.0";
+```
+
+Nota: É importante alterar a versão para desta forma forçar o update do cache.
