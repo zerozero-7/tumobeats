@@ -2,9 +2,10 @@
 window.onload = async function () {
 
     //carregar dados do data.json
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js")
-    }
+     if ("serviceWorker" in navigator) {
+         navigator.serviceWorker.register("service-worker.js")
+     }
+
     
     let request = await fetch("data.json")
     let audiodata = await request.json()
@@ -12,8 +13,7 @@ window.onload = async function () {
 
     console.log("Estou pronto")
     //** variaveis de elementos **//
-    let title = document.querySelector("#title")
-    title.innerText = "Hello"
+ 
     let previousButton = document.querySelector("#previous-button")
     let nextButton = document.querySelector("#next-button")
     let PlayButton = document.querySelector("#play-pause")
@@ -23,7 +23,8 @@ window.onload = async function () {
     let audio = document.querySelector("audio")
     console.log(audio)
 
-let currentMusic = 0
+    let currentMusic = 0
+    let pauseTime = 0;
 
 
 
@@ -46,6 +47,7 @@ let currentMusic = 0
             currentMusic = audiodata.length - 1
         }
         playaudio()
+
     }
     nextButton.onclick = function() {
         console.log("next button")
@@ -55,11 +57,18 @@ let currentMusic = 0
     } 
     playaudio()
     }
+
+    audio.onended = function () {
+        nextButton.click()
+    }
     PlayButton.onclick = function() {
 
         if (audio.paused){
             playaudio()
+            audio.currentTime = pauseTime
+            pauseTime = 0
         }else{
+            pauseTime = audio.currentTime
             pauseaudio()
         }
     }

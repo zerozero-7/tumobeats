@@ -1,17 +1,94 @@
+/* ===============================
+   RESET E BASE
+================================= */
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
+    color: #cce0ff;
 }
 
 html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #000024, #1e1e4f);
+    background: linear-gradient(135deg, #001122, #003366);
     height: 100dvh;
     overflow: hidden;
+    position: relative;
 }
 
+/* ===============================
+   EFEITOS FORA DO QUADRADO
+================================= */
+html::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 128, 255, 0.15) 0%, transparent 70%);
+    z-index: -2;
+    animation: pulseGlow 8s ease-in-out infinite;
+}
+
+.glow-effect {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 132, 255, 0.4), transparent);
+    border-radius: 50%;
+    animation: flicker 5s ease-in-out infinite;
+    z-index: -1;
+}
+
+.glow-top-left {
+    top: -60px;
+    left: -60px;
+}
+
+.glow-bottom-right {
+    bottom: -60px;
+    right: -60px;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* ===============================
+   TEXTO FORA DO PLAYER
+================================= */
+.outside-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    color: #88ccff;
+    font-weight: 500;
+    text-shadow: 0 0 5px #33aaff;
+    z-index: 1;
+}
+
+/* ===============================
+   PLAYER (BODY) ESTILIZADO
+================================= */
 body {
     display: grid;
     grid-template-areas:
@@ -20,21 +97,24 @@ body {
       'scrub scrub scrub'
       'previous playpause next'
       'volume-input volume-input tumo';
-  
-    grid-template-rows: 60px auto 40px auto 40px;
+
+    grid-template-rows: 60px auto 40px auto 70px;
     grid-template-columns: 1fr 1fr 1fr;
-  
-    background: linear-gradient(135deg, #000034, #000e79);
+
+    background: linear-gradient(135deg, #002244, #004080);
     aspect-ratio: 1;
     height: 800px;
     width: 450px;
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 25px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 20px 15px rgba(3, 0, 95, 0.7), 0 0 40px 5px rgba(0, 8, 65, 0.3);
-  
+    box-shadow:
+        0 0 30px 15px rgba(0, 70, 150, 0.7),
+        inset 0 0 50px rgba(0, 100, 255, 0.2);
+
     animation: floatBody 6s ease-in-out infinite;
+    z-index: 0;
 }
 
 @keyframes floatBody {
@@ -43,157 +123,249 @@ body {
 }
 
 button {
-    background: linear-gradient(45deg, #000038, #00009e);
+    background: linear-gradient(145deg, #0055cc, #0077ff);
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    font-size: 20px;
-    transition: transform 0.2s, background 0.3s;
+    color: #e0f0ff;
+    font-size: 30px;
+    font-weight: 600;
+    box-shadow:
+        0 5px 15px rgba(0, 120, 255, 0.7),
+        inset 0 -3px 8px rgba(255, 255, 255, 0.3);
+    transition: transform 0.15s ease, background 0.3s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: linear-gradient(145deg, #0077ff, #3399ff);
+    transform: scale(1.1);
 }
 
 button:active {
-    transform: scale(0.85);
-    background: linear-gradient(45deg, #0000bb, #3333ff);
+    transform: scale(0.95);
 }
 
+/* TÍTULO */
 #title {
-    color: #e0e0ff;
-    margin: 0;
-    font-size: 50px;
+    color: #aaddff;
+    font-size: 40px;
     position: absolute;
-    top: 10px;
-    left: 50%;
+    top: 25px;
+    right: -20%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.3);
+    text-shadow:
+        0 0 15px #3d94ff,
+        0 0 30px #2980ff;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-#icon-play {
-}
-
-#icon-pause {
-    display: none;
-}
-
+/* BARRA DE SCRUB */
 #scrub-input {
     display: flex;
-    position: relative;
     grid-area: scrub;
     justify-content: center;
+    align-items: center;
 }
 
 #scrub-input input[type="range"] {
     width: 100%;
-    accent-color: #0000aa;
+    accent-color: #3399ff;
+    height: 10px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #3399ff 0%, #66b3ff 100%);
+    box-shadow: 0 0 10px #3399ff88;
+    cursor: pointer;
 }
 
+/* VOLUME */
 #volume-input {
     display: flex;
-    position: relative;
     grid-area: volume-input;
     justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 #volume-input input[type="range"] {
-    width: 100%;
-    accent-color: #6a6aff;
+    -webkit-appearance: none;
+    width: 80%;
+    height: 12px;
+    border-radius: 8px;
+    background: #003366;
+    box-shadow: 0 0 8px #66b3ff88;
+    cursor: pointer;
 }
 
+#volume-input input[type="range"]::-webkit-slider-runnable-track {
+    height: 12px;
+    background: linear-gradient(90deg, #3399ff 0%, #66b3ff 100%);
+}
+
+#volume-input input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #66b3ff;
+    border-radius: 50%;
+    border: 2px solid #3399ff;
+    box-shadow: 0 0 10px #66b3ffcc;
+    margin-top: -6px;
+}
+
+#volume-input input[type="range"]::-webkit-slider-thumb:hover {
+    background: #3399ff;
+}
+
+/* BOTÃO DE VOLUME OPCIONAL */
+#volume-button {
+    background: linear-gradient(145deg, #004a99, #0066cc);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 12px rgba(0, 110, 230, 0.7);
+    cursor: pointer;
+}
+
+/* BOTÃO DE ARQUIVO */
 #file-input {
     grid-area: title;
     position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(145deg, #0055cc, #0077ff);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 120, 255, 0.7);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
 }
 
-#input-file {
+#file-input:hover {
+    background: linear-gradient(145deg, #0077ff, #3399ff);
+}
+
+#file-input input[type="file"] {
     position: absolute;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    background-color: #2a2a5f;
-    inset: 0;
-    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    top: 0;
+    left: 0;
 }
 
+/* ÁREA DOS BEATS */
 #beats {
     grid-area: beats;
+    width: 320px;
+    height: 320px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #0066ff33 0%, #00336688 80%);
+    border-radius: 50%;
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(0, 120, 255, 0.3);
+    box-shadow: 0 12px 36px rgba(0, 102, 255, 0.4);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* BOTÕES DE CONTROLE */
+#previous-button,
+#play-pause,
+#next-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg, #5a5a9f, #8a8aff);
-    height: 250px;
-    border-radius: 10px;
-    box-shadow: inset 0 0 20px rgba(0, 123, 255, 0.3);
-}
-
-#previous-button {
-    grid-area: previous;
 }
 
 #play-pause {
-    grid-area: playpause;
-    font-size: 24px;
+    font-size: 34px;
+    font-weight: 700;
 }
 
-#next-button {
-    grid-area: next;
-}
-
+/* TEXTO DAS INSTRUÇÕES */
 #tumo {
     grid-area: tumo;
-    color: #6a6aff;
-    font-size: 18px;
+    color: #80b3ff;
+    font-size: 20px;
     text-align: center;
-}
-
-.range-bar {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, #6a6aff, #8a8aff);
-    pointer-events: none;
-    transform: scaleX(0.5);
-    transform-origin: left;
-    border-radius: 5px;
-}
-
-input[type="range"] {
-    flex: 1;
-    opacity: 0;
-    height: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #3399ff88;
 }
 
 #nomedamusica {
-    color: #4a90e2;
-    margin: 0;
-    font-size: 22px;
+    color: #99bbff;
+    font-size: 24px;
     position: absolute;
-    top: 80px;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 0 0 5px rgba(74, 144, 226, 0.7);
+    text-shadow: 0 0 8px #3399ffaa;
+    font-weight: 600;
 }
 
 #linhas {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     bottom: 20px;
     width: 100%;
-    color: #e0e0ff;
-    font-size: 16px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    color: #b3d1ff;
+    font-size: 18px;
+    text-shadow: 0 0 15px #3399ffaa;
+    font-weight: 500;
+}
+
+.glow-effect {
+    position: fixed; /* Fixa no viewport, não no body */
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 132, 255, 0.3), transparent 70%);
+    border-radius: 50%;
+    animation: flicker 5s ease-in-out infinite;
+    pointer-events: none; /* Permite clicar nos elementos abaixo */
+    z-index: -1;
+}
+
+.glow-top-left {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.glow-bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
 }

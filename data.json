@@ -10,5 +10,9 @@
       {
         "title": "Musica 3",
         "url": "audios/music03.mp3"
+    },
+    {
+        "title": "Musica 5",
+        "url": "audios/music04.mp3"
     }
 ]
